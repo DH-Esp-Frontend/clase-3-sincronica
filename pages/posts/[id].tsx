@@ -1,8 +1,14 @@
 import React from "react";
 import { NextPage } from "next";
-import Head from "next/head";
 import { useRouter } from "next/router";
-import CONTENT_BY_LOCALE from "../../locale";
+
+const recipePage = {
+  // Las properties  title y description la podemos usar para agregar metadata en esta página
+  title: "Receta",
+  description:
+    "Detalle de los ingredientes y pasos necesarios para poder preparar el plato",
+  content: "Id de la receta:",
+};
 
 // Creamos una página dinámica en que nos permitirá
 // mostrar la receta elegida por el usuario.
@@ -11,23 +17,17 @@ const Recipe: NextPage = () => {
   Usando el hook useRouter podemos acceder al id de la receta
   el cual viene dado por la url
 */
-  const { locale, query } = useRouter();
+  const { query } = useRouter();
   const id = query.id;
 
-  // También obtenemos la información en base al lenguage seleccionado
-  const localeContent =
-    CONTENT_BY_LOCALE[locale as keyof typeof CONTENT_BY_LOCALE];
+  // También podremos obtener la información en base al lenguage seleccionado...
 
-  // Extraemos la información según en lenguage seleccionado
-  const { title, description, content } = localeContent.recipePage;
+  // Por ahora estos datos estan hardoceados en este archivo, pero deberían depender del lenguage seleccionado
+  const { title, content } = recipePage;
 
   return (
     <>
-      {/* Podemos crear un Head distinto para esta página, para cambiar el titulo */}
-      <Head>
-        <title>{`${title}: ${id}`} </title>
-        <meta name="description" content={description} />
-      </Head>
+      {/* Podemos crear un Head distinto para esta página, para cambiar el titulo o la descripción */}
       <div>
         <h3>{title}</h3>
         <p>
