@@ -1,11 +1,8 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { EN_CONTENT } from "../locale/en_EN"
-import { ES_CONTENT } from "../locale/es_ES"
-import { PT_CONTENT } from "../locale/pt_BR"
+import Layout from "../components/Layout/Layout";
+
 import styles from "../styles/Home.module.css";
 
 const home = {
@@ -63,28 +60,18 @@ const home = {
 
 const Home: NextPage = () => {
   // Mediante useRouter podríamos acceder al idioma seleccionado y extraer la información en base a ello.
-  const {locale} = useRouter()
-  console.log(locale)
-  let text = ES_CONTENT
-  if(locale === "en-EN") text = EN_CONTENT
-  if(locale === "pt-BR") text = PT_CONTENT
-  // Por ahora los datos estan harcodeados en este archivo, pero deberian ser dinámicos en base al idioma seleccionado...
-  const { home: {heroText, recipes} } = text;
 
+  // Por ahora los datos estan harcodeados en este archivo, pero deberian ser dinámicos en base al idioma seleccionado...
+  const { heroText, recipes } = home;
 
   return (
+    <Layout>
+      {/* Aqui podríamos agregar un Head específico con contenido para esta página */}
       <main className={styles.main}>
-        <Head>
-          <title>Home - ReceBlogs</title>
-          <meta name="description" content="blog de recetas" />
-        </Head> 
         <div className={styles.hero}>
           <h1 className={styles.description}>{heroText}</h1>
           <figure>
             {/* Acá agregamos la imágen del chef que se encuentra dentro de la carpeta public */}
-            <div className="dark" >
-              <Image src="/chef.jpg" alt="chef"  width={300} height={300} />
-            </div>
           </figure>
         </div>
         <div className={styles.grid}>
@@ -110,6 +97,7 @@ const Home: NextPage = () => {
           ))}
         </div>
       </main>
+    </Layout>
   );
 };
 
