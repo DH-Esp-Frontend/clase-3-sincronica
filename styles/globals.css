@@ -19,3 +19,12 @@ a {
 :root {
   --red: rgb(201, 47, 68);
 }
+
+.main{
+  background-color: black;
+  color: white;
+}
+
+.chef{
+  margin-top: 10000px;
+}

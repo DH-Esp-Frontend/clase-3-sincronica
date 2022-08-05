@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import Layout from "../../components/Layout/Layout";
 
 const recipePage = {
   // Las properties  title y description la podemos usar para agregar metadata en esta página
@@ -27,13 +28,12 @@ const Recipe: NextPage = () => {
 
   return (
     <>
-      {/* Podemos crear un Head distinto para esta página, para cambiar el titulo o la descripción */}
-      <div>
-        <h3>{title}</h3>
-        <p>
-          {content} #{id}
-        </p>
-      </div>
+        <div>
+          <h3>{title}</h3>
+          <p>
+            {content} #{id}
+          </p>
+        </div>
     </>
   );
 };
